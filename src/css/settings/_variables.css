@@ -1,0 +1,84 @@
+/* ==========================================================================
+   Variables
+   ========================================================================== */
+
+/**
+ * Font settings
+ */
+
+$base-font-size:   100%;
+$base-line-height: 1.75;
+$base-rem:         18px;
+
+$font-serif:      "Cantata One", Times, serif;
+$font-sans-serif: "Muli", Helvetica, Arial, sans-serif;
+
+/**
+ * Grid breakpoints
+ */
+
+$max-width-container: 1280px;
+
+$grid-xs: 300px; /* 280 + 10 * 2 */
+$grid-sm: 680px; /* 620 + 30 * 2 */
+$grid-md: 932px; /* 900 + 16 * 2 */
+$grid-lg: 1020px; /* 960 + 30 * 2 */
+
+$breakpoint-max-xs: (max-width: 580px);
+$breakpoint-max-sm: (max-width: 700px);
+$breakpoint-max-md: (max-width: 980px);
+$breakpoint-max-lg: (max-width: 1200px);
+
+$breakpoint-min-xs: (min-width: 581px);
+$breakpoint-min-sm: (min-width: 701px);
+$breakpoint-min-md: (min-width: 981px);
+$breakpoint-min-lg: (min-width: 1201px);
+
+
+/**
+ * Radius
+ */
+
+$border-radius: 0px;
+$border-radius-light: 0px;
+
+
+/**
+ * Colors
+ */
+
+$white:       #FFF;
+$black:       #000;
+$black-light: #232323;
+
+$grey-light:  #F0F0F0;
+$grey:        #3B3839;
+
+/* lolz america */
+$gray-light:  $grey-light;
+$gray:        $grey;
+
+$gold:        #BD9B60;
+$gold-light:  #f8f5ef;
+$gold-dark:   #a58754;
+
+$red:         #E23F37;
+$green:       #003944;
+
+$color-facebook:        #2d4486;
+$color-facebook-light:  #2c4da9;
+$color-facebook-dark:   #1b2f68;
+$color-twitter:         #5ea9dd;
+$color-twitter-light:   #6bb6ea;
+$color-twitter-dark:    #519ed4;
+$color-google:          #cc3732;
+$color-google-light:    #ed5643;
+$color-google-dark:     #b72a2a;
+$color-youtube:         #cc181e;
+$color-youtube-light:   #dd242a;
+$color-youtube-dark:    #ba171c;
+$color-pinterest:       #ca232e;
+$color-pinterest-light: #e52128;
+$color-pinterest-dark:  #b71c26;
+$color-linkedin:        #007bb6;
+$color-instagram:       #2c5c81;

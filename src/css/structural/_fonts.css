@@ -1,0 +1,17 @@
+/* ==========================================================================
+   FONTS
+   ========================================================================== */
+
+
+  /**
+   * Font Awesome
+   * http://fortawesome.github.io/Font-Awesome/
+   */
+  @import url(https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css);
+
+
+  /**
+   * Montserrat
+   * https://www.google.com/fonts#UsePlace:use/Collection:Montserrat:400,700
+   */
+@import url(https://fonts.googleapis.com/css?family=Muli:400,300|Cantata+One);
