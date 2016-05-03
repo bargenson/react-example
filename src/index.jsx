@@ -1,10 +1,5 @@
 import React from 'react';
 import {render} from 'react-dom';
+import TodoList from './components/TodoList.jsx';
 
-class App extends React.Component {
-  render () {
-    return <p>Hello React!</p>;
-  }
-}
-
-render(<App/>, document.getElementById('app'));
+render(<TodoList/>, document.getElementById('app'));
