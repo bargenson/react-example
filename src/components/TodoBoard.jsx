@@ -17,14 +17,23 @@ class TodoBoard extends Component {
     });
   }
 
+  handleTodoChange(currentTodo, newTodo) {
+    var index = this.state.todos.indexOf(currentTodo);
+    var todos = this.state.todos.concat([]);
+    todos[index] = newTodo;
+    this.setState({
+      todos: todos
+    });
+  }
+
   render () {
     return (
       <section className="todo-board">
         <CreateTodo onCreate={this.handleTodoCreate.bind(this)} />
         <div>
-          <TodoList title="Open" todos={this.state.todos.filter(todo => todo.status === "Open")} />
-          <TodoList title="In Progress" todos={this.state.todos.filter(todo => todo.status === "In progress")} />
-          <TodoList title="Done" todos={this.state.todos.filter(todo => todo.status === "Done")} />
+          <TodoList title="Open" todos={this.state.todos.filter(todo => todo.status === "Open")} onTodoChange={this.handleTodoChange.bind(this)} />
+          <TodoList title="In Progress" todos={this.state.todos.filter(todo => todo.status === "In progress")} onTodoChange={this.handleTodoChange.bind(this)} />
+          <TodoList title="Done" todos={this.state.todos.filter(todo => todo.status === "Done")} onTodoChange={this.handleTodoChange.bind(this)} />
         </div>
       </section>
     );
