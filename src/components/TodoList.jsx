@@ -1,40 +1,22 @@
-import React from 'react';
+import React, { Component, PropTypes } from 'react';
 import CreateTodo from './CreateTodo.jsx';
 import Todo from './Todo.jsx';
 
-export default class TodoList extends React.Component {
-
-  constructor() {
-    super();
-    this.state = {
-      todos: [
-        {
-          description: "Do this"
-        },
-        {
-          description: "Do that"
-        }
-      ]
-    };
-  }
-
-  handleTodoCreate(todo) {
-    this.setState({
-      todos: this.state.todos.concat([ todo ])
-    });
-  }
+class TodoList extends Component {
 
   render () {
     return (
-      <div>
-        <CreateTodo onCreate={this.handleTodoCreate.bind(this)} />
-        <div>
-          {this.state.todos.map(function (todo, index) {
-            return <Todo key={index} description={todo.description} />
-          })}
-        </div>
-      </div>
+      <section className="todo-list">
+        <h1>{this.props.title}</h1>
+        {this.props.todos.map(function (todo, index) {
+          return <Todo key={index} description={todo.description} status={todo.status} />
+        })}
+      </section>
     );
   }
 
 }
+
+TodoList.propTypes = { todos: PropTypes.array.isRequired };
+
+export default TodoList;

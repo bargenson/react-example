@@ -1,5 +1,20 @@
 import React from 'react';
 import {render} from 'react-dom';
-import TodoList from './components/TodoList.jsx';
+import TodoBoard from './components/TodoBoard.jsx';
 
-render(<TodoList/>, document.getElementById('app'));
+var todos = [
+  {
+    description: "Do this",
+    status: "Open"
+  },
+  {
+    description: "Do that",
+    status: "In progress"
+  },
+  {
+    description: "Do it!",
+    status: "Done"
+  }
+];
+
+render(<TodoBoard todos={todos} />, document.getElementById('app'));
