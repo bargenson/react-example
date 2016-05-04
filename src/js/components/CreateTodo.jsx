@@ -4,7 +4,7 @@ class CreateTodo extends Component {
 
   handleSubmit(e) {
     e.preventDefault();
-    var field = e.target.firstChild;
+    const field = e.target.firstChild;
     this.props.onCreate({ 
       description: field.value,
       status: "Open"
