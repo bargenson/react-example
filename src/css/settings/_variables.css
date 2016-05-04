@@ -10,8 +10,8 @@ $base-font-size:   100%;
 $base-line-height: 1.75;
 $base-rem:         18px;
 
-$font-serif:      "Cantata One", Times, serif;
-$font-sans-serif: "Muli", Helvetica, Arial, sans-serif;
+$font-serif:      Times, serif;
+$font-sans-serif: Roboto, Helvetica, Arial, sans-serif;
 
 /**
  * Grid breakpoints
@@ -52,18 +52,15 @@ $black:       #000;
 $black-light: #232323;
 
 $grey-light:  #F0F0F0;
-$grey:        #3B3839;
-
-/* lolz america */
-$gray-light:  $grey-light;
-$gray:        $grey;
-
-$gold:        #BD9B60;
-$gold-light:  #f8f5ef;
-$gold-dark:   #a58754;
+$grey:        #CCCCCC;
 
 $red:         #E23F37;
 $green:       #003944;
+
+$main-color:  $green;
+$main-link:   $red;
+$gray-light:  $grey-light;
+$gray:        $grey;
 
 $color-facebook:        #2d4486;
 $color-facebook-light:  #2c4da9;

@@ -1,0 +1,31 @@
+.todo-board {
+
+  &__task-creator {
+
+    .form {
+      text-align: center;
+    }
+    
+    .form__item--input {
+      display: inline-block;
+
+      .input {
+        display: inline-block;
+        margin: 10px;
+        width: 300px;
+      }
+    }
+
+    button {
+      margin: 10px;
+      vertical-align: bottom;
+    }
+  }
+
+  &__view {
+    background: $gray-light;
+    border: 2px solid $gray;
+    margin: 1em;
+    padding: 2em;
+  }
+}

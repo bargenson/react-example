@@ -4,7 +4,7 @@ class CreateTodo extends Component {
 
   handleSubmit(e) {
     e.preventDefault();
-    var field = e.target.firstChild;
+    var field = e.target.querySelectorAll("[data-value='taskName']")[0];
     this.props.onCreate({ 
       description: field.value,
       status: "Open"
@@ -14,9 +14,20 @@ class CreateTodo extends Component {
 
   render() {
     return (
-      <form className="create-todo-form" onSubmit={this.handleSubmit.bind(this)}>
-        <input type="text" placeholder="What do you want to remember?" />
-      </form>
+      <div className="todo-board__task-creator">
+        <form className="form" onSubmit={this.handleSubmit.bind(this)}>
+
+          <div className="form__item form__item--input">
+            <div className="input">
+              <input type="text" data-value="taskName" required placeholder="What do you want to remember?" />
+            </div>
+            <button type="submit" className="btn">
+              Create
+            </button>
+          </div>
+
+        </form>
+      </div>
     );
   }
 

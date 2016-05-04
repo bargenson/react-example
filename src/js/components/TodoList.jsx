@@ -15,7 +15,7 @@ class TodoList extends Component {
   render() {
     var that = this;
     return (
-      <section className="todo-list">
+      <section className="todo-board__view grid__item grid__item--1-3">
         <h1>{this.props.title}</h1>
         {this.props.todos.map(function (todo, index) {
           return <Todo key={index} description={todo.description} status={todo.status} onStatusChange={that.getStatusChangeHandler(todo)} />

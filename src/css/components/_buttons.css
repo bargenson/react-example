@@ -1,0 +1,244 @@
+button,
+input[type="submit"] {
+  background: none;
+  border: none;
+  color: $main-color;
+  margin: 0;
+  padding: 0;
+
+  &,
+  &:active,
+  &.active {
+    &:focus,
+    &.focus {
+      outline: none;
+    }
+  }
+}
+
+.btn,
+input[type="submit"] {
+  background: $main-link;
+  background-image: none;
+  border: 1px solid $main-link;
+  border-radius: 0;
+  box-shadow: 0 0 6px rgba($main-link, .2);
+  color: $white;
+  cursor: pointer;
+  display: inline-block;
+  font-size: 16px;
+  font-family: $font-sans-serif;
+  font-weight: 500;
+  letter-spacing: 1px;
+  line-height: 1em;
+  margin-bottom: 0;
+  min-width: 150px;
+  padding: 11px 16px;
+  text-align: center;
+  text-decoration: none;
+  text-transform: uppercase;
+  touch-action: manipulation;
+  transition: all .3s ease-out;
+  vertical-align: middle;
+
+  &:hover,
+  &:focus,
+  &:active,
+  &.active {
+    box-shadow: 0 2px 10px rgba($main-link, .6);
+    text-decoration: none !important;
+  }
+
+  &.disabled,
+  &[disabled],
+  fieldset[disabled] & {
+    border: none;
+    cursor: not-allowed;
+    pointer-events: none;
+  }
+
+  .fa {
+    margin-right: 10px;
+  }
+}
+
+.btn--black {
+  background: $black;
+}
+
+.btn--transparent {
+  background: transparent;
+  color: $black !important;
+
+  &:hover,
+  &:focus,
+  &:active,
+  &.active {
+    background: transparent;
+    box-shadow: none;
+    color: $black !important;
+  }
+}
+
+.btn--gold {
+  background: $black;
+
+  &:hover,
+  &:focus,
+  &:active,
+  &.active {
+    background: $black;
+  }
+}
+
+
+/**
+ * Button Sizes
+ */
+
+.btn--large {
+  font-size: 20px;
+  padding: 15px 25px;
+}
+
+.btn--small {
+  font-size: 14px;
+  min-width: auto;
+  padding: 10px 15px;
+}
+
+
+/**
+ * Link buttons
+ */
+
+.btn--link {
+  background: transparent;
+  border-color: transparent;
+  font-size: 16px;
+  font-weight: normal;
+  border-radius: 0;
+  padding: 0;
+  min-width: auto;
+
+  &,
+  &:active,
+  &.active,
+  &[disabled],
+  fieldset[disabled] & {
+    background-color: transparent;
+  }
+
+  &:hover,
+  &:focus,
+  &:active {
+    background: transparent;
+    border-color: transparent;
+    text-decoration: underline;
+  }
+
+  &[disabled],
+  fieldset[disabled] & {
+    &:hover,
+    &:focus {
+      text-decoration: none;
+    }
+  }
+}
+
+
+/**
+ * Group buttons
+ */
+
+.btn-group {
+  display: block;
+  margin: 0;
+  position: relative;
+  width: 100%;
+
+  .btn {
+    margin-bottom: 10px;
+    margin-right: 10px;
+
+    @media $breakpoint-max-sm {
+      margin: 10px 0;
+    }
+  }
+
+  &.btn-group--left {
+    text-align: left;
+
+    .btn {
+      margin-left: 0;
+      margin-right: 10px;
+    }
+  }
+
+  &.btn-group--center {
+    text-align: center;
+
+    .btn {
+      margin-left: 5px;
+      margin-right: 5px;
+    }
+  }
+
+  &.btn-group--right {
+    text-align: right;
+
+    .btn {
+      margin-left: 10px;
+      margin-right: 0;
+    }
+  }
+
+  &.btn-group--full {
+
+    .btn {
+      display: block;
+      width: 100%
+    }
+  }
+
+  &.btn-group--opposite {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: space-between;
+    align-content: flex-start;
+    align-items: center;
+
+    @include breakpoint('max-sm') {
+      flex-direction: column;
+    }
+
+    .btn {
+      margin-left: 0;
+      margin-right: 0;
+
+      @include breakpoint('max-sm') {
+        margin-top: 20px;
+      }
+    }
+  }
+
+  & + p,
+  & + ul,
+  & + ol {
+    margin-top: 20px;
+  }
+}
+
+
+/**
+ * Specificity overrides
+ */
+
+input[type="submit"],
+input[type="reset"],
+input[type="button"] {
+  &.btn-group {
+    width: 100%;
+  }
+}

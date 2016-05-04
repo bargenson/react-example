@@ -30,7 +30,7 @@ class TodoBoard extends Component {
     return (
       <section className="todo-board">
         <CreateTodo onCreate={this.handleTodoCreate.bind(this)} />
-        <div>
+        <div className="todo-board__views grid">
           <TodoList title="Open" todos={this.state.todos.filter(todo => todo.status === "Open")} onTodoChange={this.handleTodoChange.bind(this)} />
           <TodoList title="In Progress" todos={this.state.todos.filter(todo => todo.status === "In progress")} onTodoChange={this.handleTodoChange.bind(this)} />
           <TodoList title="Done" todos={this.state.todos.filter(todo => todo.status === "Done")} onTodoChange={this.handleTodoChange.bind(this)} />
