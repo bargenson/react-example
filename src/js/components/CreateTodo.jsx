@@ -4,7 +4,7 @@ class CreateTodo extends Component {
 
   handleSubmit(e) {
     e.preventDefault();
-    var field = e.target.querySelectorAll("[data-value='taskName']")[0];
+    const field = e.target.querySelectorAll("[data-value='taskName']")[0];
     this.props.onCreate({ 
       description: field.value,
       status: "Open"

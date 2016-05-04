@@ -1,9 +1,27 @@
 import React, { Component, PropTypes } from 'react';
+import { DragSource } from 'react-dnd';
+import { ItemTypes } from './Constants';
+
+const todoSource = {
+  beginDrag(props) {
+    return {
+      description: props.description,
+      status: props.status
+    };
+  }
+};
+
+function collect(connect, monitor) {
+  return {
+    connectDragSource: connect.dragSource(),
+    isDragging: monitor.isDragging()
+  }
+}
 
 class Todo extends Component {
 
   getChangeStatusHandler(newStatus) {
-    var that = this;
+    const that = this;
     return function () {
       that.props.onStatusChange(that.props.status, newStatus);
     }
@@ -18,7 +36,8 @@ class Todo extends Component {
   }
 
   render () {
-    return (
+    const { connectDragSource, isDragging } = this.props;
+    return connectDragSource(
       <article className="todo">
         <p>{this.props.description}</p>
         {this.getChangeStatusButton()}
@@ -34,4 +53,4 @@ Todo.propTypes = {
   onStatusChange: PropTypes.func.isRequired
 };
 
-export default Todo;
+export default DragSource(ItemTypes.TODO, todoSource, collect)(Todo);
