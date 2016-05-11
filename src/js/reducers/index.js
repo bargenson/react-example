@@ -29,12 +29,12 @@ function stateHelper(state) {
     updateTodo: (todo) => {
       const todos = state.todos.filter(currentTodo => currentTodo.id !== todo.id);
       todos.push(todo);
-      return todos;
+      return Object.assign({}, state, { todos: todos });
     },
 
     addTodo: (todo) => {
       todo.id = state.todos.length + 1;
-      return state.todos.concat([ todo ]);
+      return Object.assign({}, state, { todos: state.todos.concat([ todo ]) });
     }
 
   };
@@ -55,23 +55,17 @@ export default function todos(state = initialState, action) {
   switch (action.type) {
     
     case ADD_TODO:
-      return {
-        todos: helper.addTodo(action.todo)
-      };
+      return helper.addTodo(action.todo);
 
     case CHANGE_TODO_STATUS:
       var todo = helper.getTodoById(action.todoId);
       const updatedTodo = Object.assign({}, todo, { status: action.status });
-      return {
-        todos: helper.updateTodo(updatedTodo)
-      };
+      return helper.updateTodo(updatedTodo);
     
     case PROMOTE_TODO:
       var todo = helper.getTodoById(action.todoId);
       const promotedTodo = getPromotedTodo(todo);
-      return {
-        todos: helper.updateTodo(promotedTodo)
-      };
+      return helper.updateTodo(promotedTodo);
 
     default:
       return state;
