@@ -1,12 +1,11 @@
 import React, { Component, PropTypes } from 'react';
 import { DragSource } from 'react-dnd';
-import { ItemTypes } from './Constants';
+import { TODO } from '../constants/ItemTypes';
 
 const todoSource = {
   beginDrag(props) {
     return {
-      description: props.description,
-      status: props.status
+      id: props.id
     };
   }
 };
@@ -20,17 +19,14 @@ function collect(connect, monitor) {
 
 class Todo extends Component {
 
-  getChangeStatusHandler(newStatus) {
-    const that = this;
-    return function () {
-      that.props.onStatusChange(that.props.status, newStatus);
-    }
+  handlePromotion() {
+    this.props.onPromote(this.props.id);
   }
 
-  getChangeStatusButton() {
+  getPromoteStatusButton() {
     switch(this.props.status) {
-      case "Open": return <a href="#" onClick={this.getChangeStatusHandler("In progress")}>Start</a>;
-      case "In progress": return <a href="#" onClick={this.getChangeStatusHandler("Done")}>End</a>;
+      case "Open": return <a href="#" onClick={this.handlePromotion.bind(this)}>Start</a>;
+      case "In Progress": return <a href="#" onClick={this.handlePromotion.bind(this)}>End</a>;
       case "Done": return;
     }
   }
@@ -40,7 +36,7 @@ class Todo extends Component {
     return connectDragSource(
       <article className="todo">
         <p>{this.props.description}</p>
-        {this.getChangeStatusButton()}
+        {this.getPromoteStatusButton()}
       </article>
     );
   }
@@ -48,9 +44,10 @@ class Todo extends Component {
 }
 
 Todo.propTypes = {
+  id: PropTypes.number.isRequired,
   description: PropTypes.string.isRequired,
   status: PropTypes.string.isRequired,
-  onStatusChange: PropTypes.func.isRequired
+  onPromote: PropTypes.func.isRequired
 };
 
-export default DragSource(ItemTypes.TODO, todoSource, collect)(Todo);
+export default DragSource(TODO, todoSource, collect)(Todo);

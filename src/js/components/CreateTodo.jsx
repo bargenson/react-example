@@ -5,7 +5,7 @@ class CreateTodo extends Component {
   handleSubmit(e) {
     e.preventDefault();
     const field = e.target.querySelectorAll("[data-value='taskName']")[0];
-    this.props.onCreate({ 
+    this.props.onTodoCreate({ 
       description: field.value,
       status: "Open"
     });
@@ -33,6 +33,6 @@ class CreateTodo extends Component {
 
 }
 
-CreateTodo.propTypes = { onCreate: PropTypes.func.isRequired };
+CreateTodo.propTypes = { onTodoCreate: PropTypes.func.isRequired };
 
 export default CreateTodo;

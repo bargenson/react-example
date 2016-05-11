@@ -1,14 +1,13 @@
 import React, { Component, PropTypes } from 'react';
 import CreateTodo from './CreateTodo.jsx';
 import Todo from './Todo.jsx';
-import { ItemTypes } from './Constants';
+import { TODO } from '../constants/ItemTypes';
 import { DropTarget } from 'react-dnd';
 
 const todoListTarget = {
   drop(props, monitor, component) {
     const todo = monitor.getItem();
-    const newTodo = Object.assign({}, todo, { status: props.title });
-    props.onTodoChange(todo, newTodo);
+    props.onTodoMoved(todo.id, props.title);
   }
 };
 
@@ -21,22 +20,18 @@ function collect(connect, monitor) {
 
 class TodoList extends Component {
 
-  getStatusChangeHandler(todo) {
-    const that = this;
-    return function (currentStatus, newStatus) {
-      const newTodo = Object.assign({}, todo, { status: newStatus });
-      that.props.onTodoChange(todo, newTodo);
-    };
+  handleTodoPromotion(todoId) {
+    this.props.onTodoPromotion(todoId);
   }
 
   render() {
     const that = this;
-    const { x, y, connectDropTarget, isOver } = this.props;
+    const { connectDropTarget } = this.props;
     return connectDropTarget(
       <section className="todo-board__view grid__item grid__item--1-3">
         <h1>{this.props.title}</h1>
         {this.props.todos.map(function (todo, index) {
-          return <Todo key={index} description={todo.description} status={todo.status} onStatusChange={that.getStatusChangeHandler(todo)} />
+          return <Todo key={todo.id} id={todo.id} description={todo.description} status={todo.status} onPromote={that.handleTodoPromotion.bind(that)} />
         })}
       </section>
     );
@@ -47,7 +42,8 @@ class TodoList extends Component {
 TodoList.propTypes = { 
   title: PropTypes.string.isRequired,
   todos: PropTypes.array.isRequired,
-  onTodoChange: PropTypes.func.isRequired
+  onTodoPromotion: PropTypes.func.isRequired,
+  onTodoMoved: PropTypes.func.isRequired
 };
 
-export default DropTarget(ItemTypes.TODO, todoListTarget, collect)(TodoList);
+export default DropTarget(TODO, todoListTarget, collect)(TodoList);

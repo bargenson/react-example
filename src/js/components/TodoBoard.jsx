@@ -4,49 +4,37 @@ import TodoList from './TodoList.jsx';
 import { DragDropContext } from 'react-dnd';
 import HTML5Backend from 'react-dnd-html5-backend';
 
-function findIndexOfTodo(todos, todo) {
-  for (let i = 0; i < todos.length; i++) {
-    if (todos[i].description === todo.description) {
-      return i;
-    }
-  }
-  return -1;
-}
-
 class TodoBoard extends Component {
 
-  constructor(props) {
-    super(props);
-    this.state = {
-      todos: props.todos
-    };
-  }
-
   handleTodoCreate(todo) {
-    this.setState({
-      todos: this.state.todos.concat([ todo ])
-    });
+    this.props.onTodoCreate(todo);
   }
 
-  handleTodoChange(currentTodo, newTodo) {
-    const index = findIndexOfTodo(this.state.todos, currentTodo);
-    if (index >= 0) {
-      const todos = this.state.todos.concat([]);
-      todos[index] = newTodo;
-      this.setState({
-        todos: todos
-      });
-    }
+  handleTodoPromotion(todoId) {
+    this.props.onTodoPromotion(todoId);
+  }
+
+  handleTodoMoved(todoId, target) {
+    this.props.onTodoMoved(todoId, target);
+  }
+
+  getTodoListComponents() {
+    return this.props.todoLists.map(todoList => 
+      <TodoList 
+        key={todoList.title}
+        title={todoList.title}
+        todos={todoList.todos} 
+        onTodoPromotion={this.handleTodoPromotion.bind(this)}
+        onTodoMoved={this.handleTodoMoved.bind(this)} />
+    );
   }
 
   render () {
     return (
       <section className="todo-board">
-        <CreateTodo onCreate={this.handleTodoCreate.bind(this)} />
+        <CreateTodo onTodoCreate={this.handleTodoCreate.bind(this)} />
         <div className="todo-board__views grid">
-          <TodoList title="Open" todos={this.state.todos.filter(todo => todo.status === "Open")} onTodoChange={this.handleTodoChange.bind(this)} />
-          <TodoList title="In progress" todos={this.state.todos.filter(todo => todo.status === "In progress")} onTodoChange={this.handleTodoChange.bind(this)} />
-          <TodoList title="Done" todos={this.state.todos.filter(todo => todo.status === "Done")} onTodoChange={this.handleTodoChange.bind(this)} />
+          {this.getTodoListComponents()}
         </div>
       </section>
     );
@@ -54,6 +42,11 @@ class TodoBoard extends Component {
 
 }
 
-TodoBoard.propTypes = { todos: PropTypes.array.isRequired };
+TodoBoard.propTypes = { 
+  todoLists: PropTypes.array.isRequired,
+  onTodoCreate: PropTypes.func.isRequired,
+  onTodoPromotion: PropTypes.func.isRequired,
+  onTodoMoved: PropTypes.func.isRequired
+};
 
 export default DragDropContext(HTML5Backend)(TodoBoard);
