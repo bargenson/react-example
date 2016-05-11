@@ -3,28 +3,27 @@ module.exports = function(grunt) {
   var webpackConfig = require("./webpack.config.js");
 
   require("matchdep").filterAll("grunt-*").forEach(grunt.loadNpmTasks);
+  require('time-grunt')(grunt);
 
-  grunt.initConfig(
-    Object.assign(
-      { 
-        pkg: grunt.file.readJSON('package.json'),
-        concurrent: {
-          options: {
-            logConcurrentOutput: true
-          },
-          dev: {
-            tasks: ["watch:css", "watch:js"]
-          }
-        }
+  var options = { 
+    pkg: grunt.file.readJSON('package.json'),
+    config: {
+      src: './grunt/*.js'
+    },
+    concurrent: {
+      options: {
+        logConcurrentOutput: true
       },
-      require("./grunt/imagemin.config.js"),
-      require("./grunt/postcss.config.js"),
-      require("./grunt/watcher.config.js"),
-      require("./grunt/webpack.config.js")(webpackConfig)
-    )
-  );
+      dev: {
+        tasks: ["watch:css", "watch:js", "watch:images"]
+      }
+    }
+  };
 
-  grunt.registerTask('dev', ["postcss:dev", "webpack:dev", "concurrent:dev"]);
+  var configs = require('load-grunt-configs')(grunt, options);
+  grunt.initConfig(configs);
+
+  grunt.registerTask('dev', [ "postcss:dev", "webpack:dev", "imagemin:dev", "concurrent:dev"]);
   grunt.registerTask("dist", ["postcss:dist", "webpack:dist", "imagemin:dist"]);
 
 };

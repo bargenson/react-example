@@ -33,22 +33,20 @@ var dest = 'dist/css/style.css';
 
 module.exports = {
 
-  postcss: {
-    options: {
-      map: true,
-      processors: processors
-    },
+  options: {
+    map: true,
+    processors: processors
+  },
 
-    dev: {
-      src: src,
-      dest: dest
-    },
+  dev: {
+    src: src,
+    dest: dest
+  },
 
-    dist: {
-      src: src,
-      dest: dest,
-      processors : processors.concat([ require('cssnano') ])
-    }
+  dist: {
+    src: src,
+    dest: dest,
+    processors : processors.concat([ require('cssnano') ])
   }
 
 };
