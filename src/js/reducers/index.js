@@ -1,6 +1,26 @@
 import { ADD_TODO, CHANGE_TODO_STATUS, PROMOTE_TODO } from '../constants/ActionTypes';
 import { OPEN, IN_PROGRESS, DONE } from '../constants/TodoStatus';
 
+const initialState = {
+  todos: [
+    {
+      id: 1,
+      description: "Do this",
+      status: "Open"
+    },
+    {
+      id: 2,
+      description: "Do that",
+      status: "In Progress"
+    },
+    {
+      id: 3,
+      description: "Do it!",
+      status: "Done"
+    }
+  ]
+};
+
 function stateHelper(state) {
   return {
 
@@ -30,7 +50,7 @@ function getPromotedTodo(todo) {
   }
 }
 
-export default function todos(state, action) {
+export default function todos(state = initialState, action) {
   const helper = stateHelper(state);
   switch (action.type) {
     
