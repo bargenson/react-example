@@ -1,6 +1,7 @@
 import React, { Component, PropTypes } from 'react';
 import { DragSource } from 'react-dnd';
 import { TODO } from '../constants/ItemTypes';
+import { OPEN, IN_PROGRESS, DONE } from '../constants/TodoStatus';
 
 const todoSource = {
   beginDrag(props) {
@@ -25,9 +26,9 @@ class Todo extends Component {
 
   getPromoteStatusButton() {
     switch(this.props.status) {
-      case "Open": return <a href="#" onClick={this.handlePromotion.bind(this)}>Start</a>;
-      case "In Progress": return <a href="#" onClick={this.handlePromotion.bind(this)}>End</a>;
-      case "Done": return;
+      case OPEN: return <a href="#" onClick={this.handlePromotion.bind(this)}>Start</a>;
+      case IN_PROGRESS: return <a href="#" onClick={this.handlePromotion.bind(this)}>End</a>;
+      case DONE: return;
     }
   }
 

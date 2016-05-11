@@ -6,17 +6,32 @@ const initialState = {
     {
       id: 1,
       description: "Do this",
-      status: "Open"
+      status: OPEN
     },
     {
       id: 2,
       description: "Do that",
-      status: "In Progress"
+      status: IN_PROGRESS
     },
     {
       id: 3,
       description: "Do it!",
-      status: "Done"
+      status: DONE
+    },
+    {
+      id: 4,
+      description: "Someone has to do it...",
+      status: OPEN
+    },
+    {
+      id: 5,
+      description: "Please do it",
+      status: OPEN
+    },
+    {
+      id: 6,
+      description: "That's super important",
+      status: OPEN
     }
   ]
 };
